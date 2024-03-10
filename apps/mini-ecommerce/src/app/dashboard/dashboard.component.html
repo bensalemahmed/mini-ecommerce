@@ -1,0 +1,25 @@
+<!--
+  This HTML code represents the template for the dashboard component.
+  It contains a container-fluid div that wraps the entire content of the dashboard.
+  Inside the container, there is a row div that contains two columns: a side bar and the main content.
+  The side bar column is only visible on medium and larger screens, and it contains the mini-ecommerce-side-bar component.
+  The main content column takes up the remaining space and contains the mini-ecommerce-nav-bar component and a router-outlet for displaying different views based on the selected route.
+-->
+<div class="container-fluid">
+  <div class="row">
+    <div
+      class="col-md-2 d-none d-md-block d-flex flex-column align-items-center"
+    >
+      <mini-ecommerce-side-bar
+        (categorySelected)="onCategorySelected($event)"
+      ></mini-ecommerce-side-bar>
+    </div>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 bg-light">
+      <mini-ecommerce-nav-bar></mini-ecommerce-nav-bar>
+      <div class="my-3">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+  </div>
+</div>

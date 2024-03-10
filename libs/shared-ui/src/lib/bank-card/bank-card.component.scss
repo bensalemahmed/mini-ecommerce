@@ -1,0 +1,37 @@
+.credit-card {
+  background: linear-gradient(to right, #1a1a1a, #333);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  width: 400px;
+  height: 250px;
+  justify-content: space-between;
+
+  .card-number {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    letter-spacing: 2px;
+    word-spacing: 4px;
+  }
+
+  .expiration-cvv {
+    display: flex;
+    justify-content: space-between;
+
+    .expiration-date,
+    .cvv {
+      font-size: 14px;
+      font-family: 'Arial', sans-serif;
+    }
+  }
+}
+.card-image {
+  max-width: 37%;
+
+  margin-bottom: 25px;
+}

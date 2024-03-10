@@ -1,0 +1,128 @@
+<!--
+  This HTML template represents the product list component.
+  It displays a list of products with their details, including an image, title, description, price, and buttons for actions like viewing, adding to cart, and removing from cart.
+
+  The template consists of the following elements:
+
+  - Container: The main container that holds the entire product list.
+  - Title: The heading displaying "Product List".
+  - Sort by Price: A dropdown menu to sort the products by price in ascending or descending order.
+  - Search by Name: A text input field to search for products by name.
+  - Product Cards: A row of product cards, each displaying the product's image, title, description, price, and action buttons.
+
+  The template also includes Angular directives and event bindings to handle dynamic behavior, such as sorting products, displaying full or truncated descriptions, and managing the cart.
+
+  Note: This documentation comment is for the HTML template file of the "ListProductsComponent" in an Angular application.
+-->
+<div class="container-fluid">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="text-left">Product List</h2>
+    <div class="form-group">
+      <label for="sortByPrice" class="mr-2">Sort by Price:</label>
+
+      <select
+        class="form-control"
+        id="sortByPrice"
+        [(ngModel)]="selectedSortOption"
+        (ngModelChange)="sortProducts()"
+      >
+        <option value="asc">Low to High</option>
+        <option value="desc">High to Low</option>
+      </select>
+    </div>
+  </div>
+
+  <form [formGroup]="searchForm" class="mb-4">
+    <div class="form-group">
+      <label for="search" class="mr-2">Search by Name:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="search"
+        formControlName="search"
+        placeholder="Enter product name"
+      />
+    </div>
+  </form>
+  <div class="row">
+    <div
+      class="col-lg-4 col-md-6 col-sm-12 mb-4"
+      *ngFor="let product of sortedProducts"
+    >
+      <div
+        class="card h-100 p-3"
+        [ngClass]="{ 'border-success': isFullDescriptionVisible(product.id) }"
+      >
+        <img
+          class="card-img-top img-fluid"
+          [src]="product.image"
+          alt="{{ product.title }}"
+          width="300"
+          height="200"
+        />
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title product-title">{{ product.title }}</h5>
+          <p
+            class="card-text product-description"
+            *ngIf="
+              !isFullDescriptionVisible(product.id) &&
+              product.description.length > 100
+            "
+          >
+            {{ product.description.slice(0, 100) }}...
+            <a (click)="showFullDescription(product.id)">See More</a>
+          </p>
+          <p
+            class="card-text product-description"
+            *ngIf="
+              !isFullDescriptionVisible(product.id) &&
+              product.description.length <= 100
+            "
+          >
+            {{ product.description }}
+          </p>
+          <p
+            class="card-text product-description"
+            *ngIf="isFullDescriptionVisible(product.id)"
+          >
+            {{ product.description }}
+            <a (click)="hideFullDescription(product.id)">See Less</a>
+          </p>
+          <div class="mt-auto product-buttons">
+            <div class="btn-group">
+              <button
+                type="button"
+                class="btn btn-sm btn-outline-dark"
+                (click)="viewProductDetails(product)"
+              >
+                View
+              </button>
+              <button
+                type="button"
+                class="btn btn-sm btn-outline-dark"
+                (click)="addToCart(product)"
+                [disabled]="isInCart(product.id)"
+              >
+                Add to Cart
+                <span
+                  *ngIf="isInCart(product.id)"
+                  class="badge badge-success ml-1"
+                  >In Cart</span
+                >
+              </button>
+              <button
+                *ngIf="isInCart(product.id)"
+                type="button"
+                class="btn btn-sm btn-outline-danger"
+                (click)="removeFromCart(product)"
+              >
+                Remove from Cart
+              </button>
+            </div>
+            <span class="price">{{ product.price | currency }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

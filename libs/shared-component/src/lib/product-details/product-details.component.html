@@ -1,0 +1,55 @@
+<!--
+  This HTML template represents the product details component.
+  It displays the details of a specific product, including its image, title, description, category, price, rating, and add/remove from cart buttons.
+
+  The template uses Bootstrap classes for styling and Angular directives for data binding and event handling.
+
+  Usage:
+  <app-product-details [product]="selectedProduct"></app-product-details>
+
+  Inputs:
+  - product: The product object to display details for.
+
+  Outputs:
+  - addToCart: Event emitted when the "Add to Cart" button is clicked.
+  - removeFromCart: Event emitted when the "Remove from Cart" button is clicked.
+
+-->
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <img class="img-fluid" [src]="product.image" alt="{{ product.title }}" />
+    </div>
+    <div class="col-md-6">
+      <h2>{{ product.title }}</h2>
+      <p class="lead">{{ product.description }}</p>
+      <p>Category: {{ product.category }}</p>
+      <p>Price: {{ product.price | currency }}</p>
+      <div class="mb-3">
+        <div class="rating">
+          <span *ngFor="let _ of getRatingArray()">&#9733;</span>
+        </div>
+        <span class="ml-2">{{ product.rating.count }} reviews</span>
+      </div>
+      <button
+        type="button"
+        class="btn btn-sm btn-outline-dark"
+        (click)="addToCart(product)"
+        [disabled]="isInCart(product.id)"
+      >
+        Add to Cart
+        <span *ngIf="isInCart(product.id)" class="badge badge-success ml-1"
+          >In Cart</span
+        >
+      </button>
+      <button
+        *ngIf="isInCart(product.id)"
+        type="button"
+        class="btn btn-sm btn-outline-danger"
+        (click)="removeFromCart(product)"
+      >
+        Remove from Cart
+      </button>
+    </div>
+  </div>
+</div>

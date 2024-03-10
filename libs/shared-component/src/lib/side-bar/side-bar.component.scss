@@ -1,0 +1,165 @@
+/**
+ * 
+ * This SCSS file contains styles for the side bar component.
+ * The side bar component is used for navigation and contains various styles for different screen sizes.
+ * 
+ * Styles:
+ * - .sidebar-close: Styles for the closed state of the side bar.
+ * - .sidebar: Styles for the side bar.
+ * - .sidebar-sticky: Styles for the sticky content inside the side bar.
+ * - .nav-link: Styles for the navigation links inside the side bar.
+ * - .nav-item: Styles for the navigation items inside the side bar.
+ * - .active: Styles for the active navigation item inside the side bar.
+ * - .btn-light: Styles for the light button inside the side bar.
+ * - .small-sidebar: Styles for the small version of the side bar.
+ */
+.sidebar-close {
+  width: 26px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  overflow-x: hidden;
+  transition: all 0.3s;
+  background-color: #fff;
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+.sidebar {
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  overflow-x: hidden;
+  transition: all 0.3s;
+  background-color: #fff;
+
+  @media (min-width: 768px) {
+    width: 250px;
+    margin-left: 1.6%;
+  }
+
+  @media (max-width: 767px) {
+    width: 250px;
+    margin-left: 0;
+    transform: translateX(-100%);
+
+    &.open {
+      transform: translateX(0);
+    }
+  }
+
+  .sidebar-sticky {
+    position: relative;
+    top: 0;
+    height: calc(100vh - 56px);
+    padding-top: 20px;
+    overflow-y: auto;
+
+    .nav-link {
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s;
+      cursor: pointer;
+
+      &:hover {
+        color: #bfbfbf;
+        transition: color 0.3s;
+        text-decoration: none;
+      }
+    }
+
+    .nav-item {
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: #f8f9fa;
+      }
+
+      &.active {
+        background-color: #a3a3a3;
+        color: #fff;
+      }
+    }
+  }
+
+  .open-sidebar-button,
+  .close-sidebar-button {
+    display: block;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1100;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+
+    span {
+      display: block;
+      width: 30px;
+      height: 3px;
+      background-color: #333;
+      margin: 6px 0;
+    }
+  }
+
+  .close-sidebar-button {
+    display: none;
+  }
+  @media (max-width: 767px) {
+    .open-sidebar-button.open {
+      display: none;
+    }
+
+    .close-sidebar-button.open {
+      display: block;
+    }
+  }
+}
+
+.sidebar-sticky {
+  position: relative;
+  top: 0;
+  height: calc(100vh - 56px);
+  padding-top: 20px;
+  overflow-y: auto;
+}
+
+.nav-link {
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s;
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  color: #bfbfbf;
+  transition: color 0.3s;
+  text-decoration: none;
+}
+
+.nav-item {
+  transition: background-color 0.3s;
+}
+
+.nav-item:hover {
+  background-color: #f8f9fa;
+}
+
+.active {
+  background-color: #a3a3a3;
+  color: #fff;
+}
+
+.btn-light {
+  margin: 10px;
+}
+
+.small-sidebar {
+  width: 60px;
+  margin-left: 0;
+}

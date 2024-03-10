@@ -1,0 +1,42 @@
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.product-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.product-description {
+  margin-bottom: 1rem;
+}
+
+.product-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price {
+  font-size: 1rem;
+  color: #404040;
+}
+.card-text a {
+  color: #bfbfbf;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.card-text a:hover {
+  color: #bfbfbf;
+}
+::ng-deep .border-success {
+  border-color: #343a40 !important;
+}

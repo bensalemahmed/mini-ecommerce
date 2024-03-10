@@ -1,0 +1,30 @@
+<!--
+  This HTML template represents the BankCardComponent, which is a reusable component for displaying a bank card.
+
+  Usage:
+  <app-bank-card
+    [cardNumber]="cardNumber"
+    [expirationDate]="expirationDate"
+    [cvv]="cvv"
+  ></app-bank-card>
+
+  Properties:
+  - cardNumber: The card number to be displayed. If not provided, it will be masked as '**** **** **** ****'.
+  - expirationDate: The expiration date of the card. If not provided, it will be displayed as 'MM/YY'.
+  - cvv: The CVV number of the card. If not provided, it will be masked as '***'.
+
+  Example:
+  <app-bank-card
+    cardNumber="1234 5678 9012 3456"
+    expirationDate="12/24"
+    cvv="123"
+  ></app-bank-card>
+-->
+<div class="credit-card">
+  <div class="card-number">{{ cardNumber || '**** **** **** ****' }}</div>
+  <img class="card-image" src="assets/card.png" alt="Card Image" />
+  <div class="expiration-cvv">
+    <div class="expiration-date">Exp: {{ expirationDate || 'MM/YY' }}</div>
+    <div class="cvv">CVV: {{ cvv || '***' }}</div>
+  </div>
+</div>
